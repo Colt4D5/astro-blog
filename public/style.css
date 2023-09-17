@@ -1,0 +1,15 @@
+#post-categories {
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.3rem;
+  padding: 0.5rem 0 1rem;
+}
+#post-categories button {
+  cursor: pointer;
+}
+#post-categories button.active {
+  outline: 2px solid tomato;
+}
+#post-categories button:disabled {
+  cursor: not-allowed;
+}

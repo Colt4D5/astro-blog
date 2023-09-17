@@ -1,0 +1,40 @@
+---
+import Header from "../components/Header.astro";
+import BlogFeed from "../components/BlogFeed.astro";
+import Svelte from "../components/svelte/Svelte.svelte";
+import ReactComponent from "../components/react/React.jsx";
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="stylesheet" href="/style.css">
+		<title>Astro</title>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>Blog</h1>
+			<BlogFeed />
+			<Svelte />
+			<ReactComponent />
+		</main>
+	</body>
+</html>
+
+<style>
+	html :is(*, *::before, *::after) {
+		box-sizing: border-box;
+	}
+	body {
+		padding: 0;
+		margin: 0;
+	}
+	main {
+		width: min(100%, 800px);
+		margin-inline: auto;
+	}
+</style>

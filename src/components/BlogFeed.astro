@@ -1,0 +1,32 @@
+---
+import posts from '../assets/posts.json'
+import Tags from './react/Tags.jsx';
+
+const categories = new Set();
+posts.forEach(post => {
+  post.categories.forEach(category => categories.add(category));
+})
+---
+
+<h2>Blog Posts</h2>
+
+<Tags client:load categories={[...categories]} />
+
+{
+  posts.map(post => {
+  return (
+    <div class="post" class:list={...post.categories} >
+      <h2 set:html={post.title} />
+      <div class="post-content" set:html={post.content} />
+    </div>)
+  })
+}
+
+<style>
+  .post {
+    box-shadow: 6px 10px 16px rgb(0 0 0 / 0.15);
+    border-radius: 0.5rem;
+    margin-bottom:1.5rem;
+    padding: 1rem;
+  }
+</style>
