@@ -1,1 +1,1 @@
-<h2 class:test={true} >SVELTE</h2>
+<h2 class:test={true} >This is a SVELTE component</h2>

@@ -1,0 +1,26 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import { posts } from '../../assets/posts.js';
+const { post } = Astro.params;
+const currentPost = posts.filter(p => String(p.id) == post);
+if (currentPost) {
+  console.log(currentPost)
+} else {
+  console.log('Nope!');
+}
+---
+
+<MainLayout>
+  {
+    currentPost ? 
+      <div>
+        <h1>{currentPost[0].title}</h1>
+        <div class="post-content" set:html={currentPost[0].content} />
+        <a href="/"><button>&#8592; Back to feed</button></a>
+      </div> : 
+      <div>
+        <p>No posts found...</p>
+        <a href="/"><button>&#8592; Back to feed</button></a>
+      </div>
+  }
+</MainLayout>

@@ -1,7 +1,7 @@
 export default function ReactComponent() {
   return (
     <>
-      <h2>React</h2>
+      <h2>This is a React component</h2>
     </>
   )
 }
