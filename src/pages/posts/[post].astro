@@ -1,13 +1,16 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
 import { posts } from '../../assets/posts.js';
+export function getStaticPaths() {
+  return [
+    {params: {post: 1}},
+    {params: {post: 2}},
+    {params: {post: 3}},
+    {params: {post: 4}},
+  ];
+}
 const { post } = Astro.params;
 const currentPost = posts.filter(p => String(p.id) == post);
-if (currentPost) {
-  console.log(currentPost)
-} else {
-  console.log('Nope!');
-}
 ---
 
 <MainLayout>

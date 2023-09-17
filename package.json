@@ -10,7 +10,6 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/node": "^6.0.0",
     "@astrojs/react": "^3.0.2",
     "@astrojs/svelte": "^4.0.2",
     "@nanostores/react": "^0.7.1",
