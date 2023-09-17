@@ -1,11 +1,46 @@
-<header>
-  <h1>Logo & Stuff</h1>
+<header id="header">
+  <div class="inner">
+    <h1>Blog & Stuff</h1>
+    <nav>
+      <ul>
+        <li><a href="/">Feed</a></li>
+        <li><a href="/about">About</a></li>
+      </ul>
+    </nav>
+  </div>
 </header>
 
-<style>
+<style lang="scss">
   header {
     padding-inline: 1rem;
     border-bottom: 1px solid #999;
     box-shadow: 2px 8px 10px rgb(0 0 0 / 0.15);
+    .inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: min(100%, 1200px);
+      margin-inline: auto;
+      nav {
+        ul {
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          gap: 1em;
+          font-size: 1.25rem;
+          list-style: none;
+          li {
+            a {
+              text-decoration: none;
+              color: #000;
+              padding: 0.25em 0.75em;
+              &:hover {
+                color: tomato;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 </style>

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function Tags({ categories }) {
+const Tags = ({ categories }) => {
   const [cats, setCats] = useState([]);
 
   function filterTags(e) {
@@ -18,11 +18,17 @@ export default function Tags({ categories }) {
   
   return (
     <div id="post-categories">
+      categories: 
       {
+        cats.length > 0 && categories.map((cat, i) => {
+          return <button key={i} className={cats.length > 0 && cats.includes(cat) ? "active" : "inactive"} onClick={filterTags} data-category={cat} >{cat}</button>
+        }) ||
         categories.map((cat, i) => {
-          return <button key={i} className={cats.length > 0 && cats.includes(cat) ? "active" : ""} onClick={filterTags} data-category={cat} >{cat}</button>
+          return <button key={i} onClick={filterTags} data-category={cat} >{cat}</button>
         })
       }
     </div>
   )
 }
+
+export default Tags

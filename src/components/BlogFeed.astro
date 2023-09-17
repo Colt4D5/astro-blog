@@ -8,7 +8,6 @@ posts.forEach(post => {
 })
 ---
 
-<h2>Blog Posts</h2>
 
 <Tags client:load categories={[...categories]} />
 
@@ -22,7 +21,12 @@ posts.forEach(post => {
   })
 }
 
-<style>
+<style lang="scss">
+  #categories {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
   .post {
     box-shadow: 6px 10px 16px rgb(0 0 0 / 0.15);
     border-radius: 0.5rem;
