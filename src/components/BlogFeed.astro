@@ -11,11 +11,19 @@ posts.forEach(post => {
 })
 ---
 
+{/* <Tags client:load categories={[...categories]} /> */}
 
-<Tags client:load categories={[...categories]} />
+<div id="categories">
+  <p>
+    Tags: 
+    <button data-category="all">All Posts</button>
+    { [...categories].map(cat => <button data-category={cat}>{ cat }</button>) }
+  </p>
+</div>
 
-{
-  activeCategories.length === 0 ? posts.map(post => {
+<div id="posts">
+  {
+    activeCategories.length === 0 ? posts.map(post => {
     return (
       <a href={`/posts/${post.id}`}>
         <div class="post" class:list={...post.categories} >
@@ -24,25 +32,62 @@ posts.forEach(post => {
         </div>
       </a>
     )
-    
-  }) : 
-  posts.map(post => {
-    return (
-      <a href={`/posts/${post.id}`}>
+
+    }) : 
+    posts.map(post => {
+      return (
+        <a href={`/posts/${post.id}`}>
         <div class="post" class:list={...post.categories} >
           <h2>{post.title}</h2>
           <div class="post-content" set:html={post.content.length > 200 ? post.content.substring(0, 200) + '...' : post.content} />
         </div>
       </a>
-    )
-  })
-}
+      )
+    })
+  }
+</div>
+
+<script>
+  const catBtns = document.querySelectorAll('#categories button');
+  catBtns.forEach(btn => btn.addEventListener('click', e => {
+    const selectedCategory = e.target.dataset.category;
+
+    if (selectedCategory !== 'all') {
+      document.querySelectorAll('#posts .post').forEach(post => post.style.display = 'none');
+      document.querySelectorAll(`#posts .post.${selectedCategory}`).forEach(post => post.style.display = 'block');
+
+
+      document.querySelectorAll("#categories button").forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll(`#categories button:not([data-category="${selectedCategory}"])`).forEach(btn => btn.classList.add('inactive'));
+      document.querySelector(`#categories button[data-category="${selectedCategory}"]`).classList.remove('inactive');
+      document.querySelector(`#categories button[data-category="${selectedCategory}"]`).classList.add('active');
+    } else {
+      document.querySelectorAll('#posts .post').forEach(post => post.style.display = 'block');
+      document.querySelectorAll("#categories button").forEach(btn => btn.classList.remove('inactive'));
+      document.querySelectorAll("#categories button").forEach(btn => btn.classList.remove('active'));
+    }
+  }))
+</script>
 
 <style lang="scss">
   #categories {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
+    margin-block-start: 0.5rem;
+    margin-block-end: 1.5rem;
+    p {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    button {
+      cursor: pointer;
+      &.active {
+        outline: 2px solid tomato;
+      }
+      &.inactive {
+        opacity: 0.5;
+      }
+    }
   }
   a {
     text-decoration: none;
